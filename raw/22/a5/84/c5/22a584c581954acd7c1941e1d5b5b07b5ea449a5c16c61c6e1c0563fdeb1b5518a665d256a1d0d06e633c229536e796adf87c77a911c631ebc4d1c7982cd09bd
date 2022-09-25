@@ -1,0 +1,26 @@
+ ///
+ /// @file    wildpointer.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-06 10:00:57
+ ///
+ 
+#include <stdio.h>
+#include <iostream>
+using std::cout;
+using std::endl;
+
+void test()
+{
+	int * p;
+	printf("p = %p\n", p);
+}
+ 
+int main(void)
+{
+	test();
+	int * p;
+	printf("p = %p\n", p);
+	*p = 10;
+
+	return 0;
+}
