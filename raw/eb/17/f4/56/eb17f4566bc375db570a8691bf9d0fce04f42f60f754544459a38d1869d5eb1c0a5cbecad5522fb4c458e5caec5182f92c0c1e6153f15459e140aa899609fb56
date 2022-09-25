@@ -1,0 +1,91 @@
+ ///
+ /// @file    shared_ptr.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-23 10:36:21
+ ///
+ 
+#include <iostream>
+#include <memory>
+#include <vector>
+using std::cout;
+using std::endl;
+using std::shared_ptr;
+using std::vector;
+ 
+class Point
+{
+public:
+	Point(int ix, int iy)
+	: _ix(ix)
+	, _iy(iy)
+	{	cout << "Point(int,int)" << endl;	}
+	
+	void print() const
+	{
+		cout << "(" << _ix
+			 << "," << _iy
+			 << ")" << endl;
+	}
+
+	~Point()
+	{	cout << "~Point()" << endl;	}
+
+
+	friend std::ostream & operator<<(std::ostream & os, const Point & rhs);
+private:
+	int _ix;
+	int _iy;
+};
+
+std::ostream & operator<<(std::ostream & os, const Point & rhs)
+{
+	os << "(" << rhs._ix
+	   << "," << rhs._iy
+	   << ")" ;
+	return os;
+}
+
+shared_ptr<int> getValue()
+{
+	shared_ptr<int> up(new int(1));
+	return up;
+}
+
+
+
+int main(void)
+{
+	Point * p = new Point(1, 2);
+
+	shared_ptr<Point> up(p);
+	up->print();
+	cout << "up' use_count = " << up.use_count() << endl;
+	cout << "p = " << p << endl;
+
+	{
+	shared_ptr<Point> up2(up);// 表达复制语义, 将引用计数加1
+	cout << "up' use_count = " << up.use_count() << endl;
+	cout << "up2' use_count = " << up2.use_count() << endl;
+	cout << "*up = " << *up << endl;
+	cout << "*up2 = " << *up2 << endl;
+	cout << "up'get() = " << up.get() << endl;//get() 返回托管对象的原生"裸"指针
+	cout << "up2'get() = " << up2.get() << endl;//get() 返回托管对象的原生"裸"指针
+	cout << endl;
+	}
+	cout << "up' use_count = " << up.use_count() << endl << endl;
+
+#if 1
+	shared_ptr<int> pInt = getValue();// 具有移动语义的移动构造函数
+	cout << "*pInt = " << *pInt << endl;
+
+	vector<shared_ptr<int>> vec;
+	vec.push_back(std::move(pInt));//shared_ptr可以作为容器的元素，但必须要使用移动语义
+
+	pInt.reset(new int(100));//shared_ptr可以调用reset重新托管新的对象
+
+	cout << "*pInt = " << *pInt << endl;
+	cout << "...." << endl;
+#endif
+
+	return 0;
+}
