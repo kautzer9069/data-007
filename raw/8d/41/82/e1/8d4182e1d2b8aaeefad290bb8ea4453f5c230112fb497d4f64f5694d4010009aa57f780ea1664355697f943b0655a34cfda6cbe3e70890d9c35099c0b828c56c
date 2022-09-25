@@ -1,0 +1,118 @@
+
+day 01   20180604
+
+
+面向工资编程
+
+   编程
+
+学习的方法论：
+		复杂的事情简单化，简单的事情重复做
+		
+		     10000小时理论
+
+舒适区      学习区      恐惧区 
+		     	 	
+		     	 刻意练习
+		     	 反馈机制
+		     	高水平重复
+		     	 10000小时 
+		     	 
+		     	 1天8小时  1年 52周  1周5天    8 * 5 * 52 = 40 * 52 = 2080
+		     	 
+		     	 10000 / 2080 = 5年
+		     	 
+		     	 
+		     	 90 * 12 = 1080
+		     	      
+
+学计算机 --> 实践
+
+
+C++的编程范式（思维方式）:
+		面向过程(C)
+		基于对象(C)
+		面向对象(语法规则非常多)
+		泛型编程
+		模板元编程
+		函数式编程（lisp schema）
+
+C++学习方法：
+		先学语法规则  -->  应用
+		
+		
+对键盘不熟:
+		> 多聊天
+		> 打字软件
+		> 熟能生巧
+		
+		大道至简
+
+要比跟自己比，跟过去的自己比
+
+
+上课纪律：
+
+
+
+VIM   编辑器之神
+Emacs 神之编辑器
+
+
+版本控制系统
+	> Git  分布式
+	> Subversion 集中式
+
+1. 安装git：
+
+		# apt-get install git        //root权限
+		$ sudo apt-get install git   //一般用户权限
+
+2. 注册用户名：
+  www.github.com 
+  
+3. 初始化本地仓库
+	$ git init
+  
+4. 设置全局变量  
+	$ git config --global user.name "Your Name"
+	$ git config --global user.email "email@example.com"
+	
+
+5. 常用命令行操作
+
+	 $ git add readme.txt   --> 暂存区
+	 $ git commit -m "add first file readme.txt"  --> 版本库 
+	 
+	 $ git reset --hard 版本号   切换版本
+	 
+	 $ git status  查看版本库状态
+	 
+	 $ git add .   把当前工作区的所有被修改的文件一次性全部添加到暂存区
+	 
+	 
+	 working directory 工作区
+	 
+	 暂存区
+	 
+	 版本库  
+	 
+	 
+6. 使用SSH协议远程连接版本库
+	
+	$ cd ~
+
+	$ ssh-keygen -t rsa -C "youremail@example.com"
+	
+	$ cd .ssh/
+	$ cat id_rsa.pub
+		
+	ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDf5D8amK/Tfd1yTs7VUc0OakMNbFfrCqdgLC8oYZnKx5tfSPwrnywT13a1zRc4x9hgtrajWiagbtZPGMHQ8NBJe2a3aNCl+XKeg09hn/HAxVpRGqM3PPljA8gSgxGlELYz+99ivylMwQ3BinddAXLN1AoiCkSNr630nByi1Aiqd8UgMPA0Sy2deA9bb4ddGFxemFhkXj1gmR+7Ik2nSw2vYuo5Mfvv11OadgpLhvD4xHYf3DBHS8lg+8Lx1uh35cKy4NvAarUfzG9nN9Y7CwNfFcZPFTa3a93yo+fF3PhkD+MzPu335uRXOGoUgKkosiqmeN1IVieQAe3VjNNuTnCp haohb13@gmail.com
+
+	$ git remote add origin git@github.com:uername/learngit.git
+	
+	$ git push -u origin master
+	
+	
+7. 拷贝其他开源库
+	git clone https://github.com/yanyiwu/cppjieba.git
