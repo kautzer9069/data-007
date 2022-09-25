@@ -1,0 +1,41 @@
+ ///
+ /// @file    X.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-06 15:22:22
+ ///
+ 
+#include <iostream>
+using std::cout;
+using std::endl;
+
+class X
+{
+public:
+	//数据成员的初始化与其在初始化表达式中的顺序无关，
+	//只与其在被声明时的顺序有关
+	X(int x)
+	: _iy(x)
+	, _ix(_iy)
+	{
+		cout << "X(int)" << endl;
+	}
+
+	void print()
+	{
+		cout << "(" << _ix
+			 << "," << _iy
+			 << ")" << endl;
+	}
+
+private:
+	int _iy;
+	int _ix;
+};
+ 
+int main(void)
+{
+	X x(10);
+	x.print();
+
+	return 0;
+}
