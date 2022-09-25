@@ -1,0 +1,16 @@
+ ///
+ /// @file    hello.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-05 09:41:50
+ ///
+
+#include <stdio.h>   //C的标准库
+#include <iostream>  //C++标准库都是用模板实现的
+using namespace std; //命名空间
+ 
+int main(int argc, char **argv)
+{
+	printf("hello,world\n");
+	cout << "hello,world" << endl;//链式编程
+	return 0;
+}
