@@ -1,0 +1,24 @@
+ ///
+ /// @file    Computer.h
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-06 14:43:52
+ ///
+ 
+#ifndef __COMPUTER_H__
+#define __COMPUTER_H__
+
+class Computer
+{
+public:// 接口  服务
+	void setBrand(const char * brand);
+
+	void setPrice(float price) ;
+
+	void print();
+
+private://封装
+	char _brand[20];
+	float _price;
+};
+
+#endif
