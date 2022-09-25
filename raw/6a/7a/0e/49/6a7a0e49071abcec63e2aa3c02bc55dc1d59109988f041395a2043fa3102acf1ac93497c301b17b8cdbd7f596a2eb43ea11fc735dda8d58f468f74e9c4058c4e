@@ -1,0 +1,21 @@
+ ///
+ /// @file    testComputer.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-06 14:45:16
+ ///
+ 
+#include "Computer.h"
+#include <iostream>
+using std::cout;
+using std::endl;
+ 
+int main(void)
+{
+	Computer com1;
+	//com1._price = 8888;//error, 体现封装的特性
+	com1.setBrand("Dell");
+	com1.setPrice(6666);
+	com1.print();
+
+	return 0;
+}
