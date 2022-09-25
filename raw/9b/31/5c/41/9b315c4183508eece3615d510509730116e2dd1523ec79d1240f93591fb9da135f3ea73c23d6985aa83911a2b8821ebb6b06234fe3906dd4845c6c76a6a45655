@@ -1,0 +1,291 @@
+
+day 01   20180604
+
+
+面向工资编程
+
+   编程
+
+学习的方法论：
+		复杂的事情简单化，简单的事情重复做
+		
+		     10000小时理论
+
+舒适区      学习区      恐惧区 
+		     	 	
+		     	 刻意练习
+		     	 反馈机制
+		     	高水平重复
+		     	 10000小时 
+		     	 
+		     	 1天8小时  1年 52周  1周5天    8 * 5 * 52 = 40 * 52 = 2080
+		     	 
+		     	 10000 / 2080 = 5年
+		     	 
+		     	 
+		     	 90 * 12 = 1080
+		     	      
+
+学计算机 --> 实践
+
+
+C++的编程范式（思维方式）:
+		面向过程(C)
+		基于对象(C)
+		面向对象(语法规则非常多)
+		泛型编程
+		模板元编程
+		函数式编程（lisp schema）
+
+C++学习方法：
+		先学语法规则  -->  应用
+		
+		
+对键盘不熟:
+		> 多聊天
+		> 打字软件
+		> 熟能生巧
+		
+		大道至简
+
+要比跟自己比，跟过去的自己比
+
+
+上课纪律：
+
+
+操作系统：
+		Windows 面向小白用户  GUI
+		Linux   面向专业人员  命令行
+													程序接口
+		
+		
+
+
+VIM   编辑器之神
+Emacs 神之编辑器
+
+
+版本控制系统
+	> Git  分布式
+	> Subversion 集中式
+
+1. 安装git：
+
+		# apt-get install git        //root权限
+		$ sudo apt-get install git   //一般用户权限
+
+2. 注册用户名：
+  www.github.com 
+  
+3. 初始化本地仓库
+	$ git init
+  
+4. 设置全局变量  
+	$ git config --global user.name "Your Name"
+	$ git config --global user.email "email@example.com"
+	
+
+5. 常用命令行操作
+
+	 $ git add readme.txt   --> 暂存区
+	 $ git commit -m "add first file readme.txt"  --> 版本库 
+	 
+	 $ git reset --hard 版本号   切换版本
+	 
+	 $ git status  查看版本库状态
+	 
+	 $ git add .   把当前工作区的所有被修改的文件一次性全部添加到暂存区
+	 
+	 
+	 working directory 工作区
+	 
+	 暂存区
+	 
+	 版本库  
+	 
+	 
+6. 使用SSH协议远程连接版本库
+	
+	$ cd ~
+
+	$ ssh-keygen -t rsa -C "youremail@example.com"
+	
+	$ cd .ssh/
+	$ cat id_rsa.pub
+		
+	ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDf5D8amK/Tfd1yTs7VUc0OakMNbFfrCqdgLC8oYZnKx5tfSPwrnywT13a1zRc4x9hgtrajWiagbtZPGMHQ8NBJe2a3aNCl+XKeg09hn/HAxVpRGqM3PPljA8gSgxGlELYz+99ivylMwQ3BinddAXLN1AoiCkSNr630nByi1Aiqd8UgMPA0Sy2deA9bb4ddGFxemFhkXj1gmR+7Ik2nSw2vYuo5Mfvv11OadgpLhvD4xHYf3DBHS8lg+8Lx1uh35cKy4NvAarUfzG9nN9Y7CwNfFcZPFTa3a93yo+fF3PhkD+MzPu335uRXOGoUgKkosiqmeN1IVieQAe3VjNNuTnCp haohb13@gmail.com
+
+	$ git remote add origin git@github.com:uername/learngit.git
+	
+	$ git push -u origin master
+	
+	
+7. 拷贝其他开源库
+	git clone https://github.com/yanyiwu/cppjieba.git
+	
+	
+	
+VIM的IDE化
+
+		Vundle  			 vim插件管理器
+		YouCompleteMe  自动补全、语法检查
+		CtrlP   			 文件快速查找
+				,,   连续按2个逗号激活ctrlp插件
+				ctrl + j,k  向上或向下选择文件，直接按回车就会打开某一个文件
+				ctrl + t    在一个新选项卡中打开某个文件
+				g + t       向后切换选项卡
+				g + T       向前切换选项卡
+				
+
+
+day 02   20180605
+		C与C++的区别
+		
+C++的编程范式（思维方式）:
+		面向过程(C)
+		基于对象(C)
+		面向对象(语法规则非常多)
+		泛型编程
+		模板元编程
+		函数式编程（lisp schema）
+		
+		
+		C++ 语法规则多 概念 --> 代码  
+		
+		
+		1. 命名空间
+				> using namespace std;  using编译指令
+				> using std::cout;      using声明机制  推荐使用
+				> std::cout             作用域限定符
+				
+				int number = 10;    C的标准库 -->   匿名命名空间
+				
+				  
+								
+				namespace wd
+				{
+				
+				}
+		
+		2. const关键字
+				> int  number = 10;
+				
+				> const int * pa = &number; //常量指针(pointer to const)
+							> 不能通过该指针修改所指变量的值   *pa = 1;
+											
+				> int const * pb = &number;
+				
+				> int * const pc = &number;//指针常量(const pointer)
+							> 不能改变指针的指向
+				
+		
+		3. 引用
+				> int number = 1;
+				> int & ref = number;
+				> 引用是变量的别名, 操作引用跟操作变量本身是一样的
+				> 引用不能独立存在, 必须要进行初始化
+				
+				> 作为函数的参数   引用传递要比值传递的效率高
+				
+				> 作为函数的返回值
+						> 返回的变量生命周期一定要大于函数的生命周期
+						
+						> 不能返回局部变量的引用
+						> 不要轻易返回一个堆空间变量的引用，防止发生内存泄漏
+						
+						> 空指针  0  NULL  nullptr
+						> 野指针  int * p;
+						> 踩内存
+				
+		
+		void func(int,int,int)
+		
+		概念
+		
+		4. 函数重载 -->  extern "C"
+					> C语言不支持函数重载(overload)
+					> C++支持
+							> 实现原理: 名字改编(name mangling)
+							> 具体步骤: 当函数的名称相同时，根据形参的类型、个数、顺序来进行改编
+		
+		5. new/delete表达式
+					
+					> malloc/free 区别
+					
+		
+		6. 强制转换
+				 static_cast/const_cast/dynamic_cast/reinterpret_cast
+		
+		7. 默认参数
+					> 默认参数的设置要从右到左的
+				 int add(int x = 0,int y = 0);//在声明的时候赋值
+				 
+				 add()
+				 add(1);
+				 add(2,3);
+		
+		8. inline函数
+				> 在功能上跟带参数的宏定义效果是相同的
+				> 好处：有类型检查, 会降低出错的可能性
+				
+		
+		9. bool类型
+		
+		10. std::string
+				> C++风格的字符串
+				> C风格的字符串: const char *
+				
+				> std::string s1 = "hello";
+				> const char * p = s1.c_str();
+					p = s1.data();
+				
+				> 字符串长度: size() length()	
+				> 字符串拼接:   +  append
+				> 截取子串:  substr
+				> 遍历:  数组  s1[0]  s1[1] ;	
+				> for(int idx = 0; idx < s1.size(); ++idx)
+				
+				> for(auto & ch : s1)     C++11
+		
+C++入门书籍:
+		C++ primer 
+		
+
+day 03   20180606	
+		0. 复习
+		
+				两种不同的思维方式：
+						
+						面向对象   vs   面向过程
+						
+				三个小伙伴入住酒店：
+						小明      小雷      小梅 
+						
+				
+						
+				1. 交300给酒店老板
+				
+				2. 酒店老板要退50给小伙伴，实际上交给了店小二
+				
+				3. 店小二退每人10块		
+				
+				面向过程:
+						> 数据结构存放余额 int arr[5];
+						> 封装成3个函数
+						
+						
+				面向对象:  
+						> 只有5个对象在进行交互		
+				
+				
+				面向对象的第一个特征是抽象， 由对象 --> 类的过程
+				
+				再由类 --> 对象， 实例化的过程
+
+
+			去掉编译优化，要加上编译选项  -fno-elid-construtors
+			
+			
+			
+			作业：写作业  不追求当天完成   一个星期统计一次
