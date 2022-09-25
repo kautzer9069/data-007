@@ -1,0 +1,97 @@
+ ///
+ /// @file    Point2.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-06 14:59:17
+ ///
+ 
+#include <iostream>
+using std::cout;
+using std::endl;
+
+
+class Point
+{
+public:
+	Point()
+	: _ix(0)
+	, _iy(0)
+	{
+		cout << "Point()" << endl;
+	}
+
+	//初始化列表 或者 初始化表达式
+	Point(int ix, int iy)
+	: _ix(ix)
+	, _iy(iy) 
+	{
+		cout << "Point(int,int)" << endl;
+	}
+
+	//复制构造函数(copy constructor)
+	Point(const Point & rhs)
+	: _ix(rhs._ix)
+	, _iy(rhs._iy)
+	{
+		cout << "Point(const Point &)" << endl;
+	}
+
+
+	void print(){
+		cout << "(" << _ix 
+			 << "," << _iy
+			 << ")" << endl;
+	}
+
+	//析构函数也是特殊的成员函数
+	//
+	//当对象的生命周期结束时会被自动调用
+	~Point()
+	{
+		cout << "~Point()" << endl;
+	}
+
+private:
+	int _ix;
+	int _iy;
+};
+ 
+int test0(void)
+{
+	int a = 1;
+
+	int b(2);
+	cout << "a = " << a << endl;
+	cout << "b = " << b << endl;
+
+
+	Point p;//调用无参(默认)构造函数Point()   栈对象
+	p.print();
+
+	Point point(1, 2);
+	point.print();
+
+	return 0;
+}
+
+int test1(void)
+{
+	int a = 1;
+	int b = a;
+
+	Point pt1(1, 2);
+
+	Point pt2 = pt1;//Point(const Point & rhs)
+
+	cout << "pt1 = ";
+	pt1.print();
+	cout << "pt2 = ";
+	pt2.print();
+
+	return 0;
+}
+
+int main(void)
+{
+	test1();
+	return 0;
+}
