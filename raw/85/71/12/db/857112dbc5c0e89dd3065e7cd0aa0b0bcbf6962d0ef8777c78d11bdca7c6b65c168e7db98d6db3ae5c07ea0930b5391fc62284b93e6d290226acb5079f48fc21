@@ -1,0 +1,36 @@
+
+/*    file :  onecross.c
+ *
+ *    purpose : implemnetation  of one-point crossover
+ *
+ */
+#include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
+
+void
+onecross(int *Kid1,int *Kid2,int len)
+/* int     len;      the length of the vector */
+/* int     *Kid1;    pointer to crossover partners */
+/* int     *Kid2; */
+{
+	int     Fir,            /* the crossover-position */
+			  i;
+
+
+	int     Tmp;            /* used for swapping alleles */
+
+	randomize();
+	Fir=random(len);        /* choose the first crossover point */
+
+	/* crossover through exchanging information */
+
+	for (i=Fir; i<len;i++)
+	{
+		Tmp=Kid1[i];
+		Kid1[i]=Kid2[i];
+		Kid2[i]=Tmp;
+	}/* end for */
+} /* end 1cross */
+
+
