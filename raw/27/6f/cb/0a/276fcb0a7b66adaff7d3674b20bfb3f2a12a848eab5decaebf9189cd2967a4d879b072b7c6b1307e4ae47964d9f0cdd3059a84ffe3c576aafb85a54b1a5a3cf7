@@ -1,0 +1,60 @@
+/* file : mutate.c
+ *
+ * purpose : general mutation mechanisma for Binary string
+ */
+
+#include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
+
+void
+Bmutate(int *Kid,double rate,int len,int kk,int fl_m,double *gaus)
+/*int     *Kid;     pointer to the individual to be mutated */
+/* double rate;     mutation rate */
+/* int     len;     the length of vector */
+/* int     kk;      each para for kk bits */
+/* int     fl_m;    flag_m, 1: variable, 0: constant */
+/* double *gaus;    probability vector */
+{
+	int i;
+	double prob,rate_m;
+	time_t t;
+
+	if (rate>=1.0)
+	{
+		printf("Error: mutation rate must less than 1\n");
+		exit(1);
+	}
+	if (rate<=0)
+	{
+		printf("Error: mutation rate must greater than 0\n");
+		exit(1);
+	}
+
+	srand((unsigned) time(&t));
+
+	for (i=0;i<len;i++)
+	{
+
+		prob=(1.0*(rand()%1000))/1000.0;
+
+		if (fl_m==1)
+		{
+			rate_m=rate*gaus[i%kk];
+			
+		}
+		else
+			rate_m=rate;
+
+		if (prob<=rate_m)
+		{
+			if (Kid[i]==0)
+				Kid[i]=1;
+			else
+				Kid[i]=0;
+		}
+	}
+}
+
+
+
