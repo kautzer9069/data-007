@@ -1,0 +1,70 @@
+在MDK3.15下使用ULINK1调试ARM包括cortex 及ARM7/9 
+发表于 2008-2-18 21:19:24 
+在MDK3.15下使用ULINK1调试ARM包括cortex 及ARM7/9 及仿原装ULINK1的相关文件 
+ZZ
+
+
+献给像我一样没钱的兄弟，有钱的兄弟就不要下载了 
+
+
+详细请看里面的说明 
+
+在上一版 “用ULINK1调试STM32_MDK3.15b”   上改进 
+
+
+
+
+1、ULINK1文件夹是本人用的仿原装ULINK1的相关文件： 
+
+        1.1、DDB文件请用Protel 99SE及更高版本打开打开; 
+
+        1.2、PDF文件请用Adobe Read 5.0及更高版本打开。 
+
+        1.3、HEX文件请烧写到24C04里。 
+
+
+2、在MDK3.15下使用ULINK1调试ARM需要的相关文件： 
+
+        2.1、安装MDK3.15b； 
+
+        2.1、拷贝BIN文件夹到keil的安装目录下（例如c:\Keil\ARM\）； 
+
+        2.2、将windows文件夹拷贝到系统安装目录(例如c:\  此步其实是安装ULINK1的驱动)； 
+
+        2.3、打开KEIL,选择File菜单下的License Management，拷贝CID； 
+
+        2.4、用Keil_lic_v3.2生成License并添加到KEIL里,最好别用Keil_lic_v3.4， 
+             因为Keil_lic_v3.4生成的License只能使用一年， 
+             Keil_lic_v3.2最多可使用到2050年；   ^_^ 
+
+        2.5、请注意区分内核（在DEBUG介面设置）ULINK Cortex Debugger用于Cortex核； 
+             ULINK ARM Debugger是用于ARM7/9的调试； 
+
+        2.6、恭喜你可以用uLINK1在MDK3.15b下调试ARM了,祝大家调得开心； 
+
+        2.7、如果你感觉调得不爽，或其它任何原因，需要重新用回MDK3.15b的原文件， 
+             请将3.15b下的BIN文件夹拷回到keil的安装目录下（例如c:\Keil\ARM\）。 
+
+补充:         
+        1：此方法仅限个人学习使用，公司的话还是请买正版， 
+           这样才有利于KEIL开发更好的编译器及工具。 
+        2：在试到2.1及2.2步骤时会弹出“此文件夹已包含一个“XXXXX”的文件夹”时， 
+           请选择  “全部（A）”  （问这问题的也不少，现作补充上来）。 
+
+
+更新记录： 
+        1、2007/12/15         
+                1.1、更改UL2CM3.dll可用ULINK1调试STM32。 
+                1.2、采用网上方法替换ARM.DLL用于MDK3.15b的破解。 
+
+
+        2、2007/12/26 
+                2.1、更改UL2ARM.dll可用于ULINK1调试其它系列的ARM 
+                     现只测试了SAMSUNG：S3C44B0、S3C2440 
+                               NXP：        LPC2214、LPC2148 
+                     由于本人只用到以上几种ARM芯片，其它的未做测试。 
+
+
+
+                                                        AMR(yjgyiy) 
+                                                  2007/12/26日作最后更新 
