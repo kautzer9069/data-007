@@ -1,0 +1,201 @@
+#include <conio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+
+#define Beta 1.0
+#define NAME_MAX 80
+
+double
+bp(w_ih,w_ho,patt,targ,nn,hh,pp,mm,fin,fileW,
+		resultF,crition,total,sa)
+double **w_ih;	/* weight from input to hidden */
+double **w_ho;	/* weight from hidden to output */
+double **patt;	/* input patterns */
+double **targ;	/* desired outputs */
+int	nn;		/* input dim */
+int 	hh;		/* hidden dim */
+int 	pp;		/* output dim */
+int 	mm;		/* training patterns number */
+int	*fin;		/* flag for terminate */
+char	*fileW;	/* weightFile */
+char	*resultF;	/* resultFile Name */
+double	crition;	/* minimum mean square */
+int total;
+int sa;		/* flag for saving weights */
+{
+	double *output;
+	int i,j,s,num_p,num_d,mis,mis_tr,mis_te;
+	double err;
+
+	char Msg[NAME_MAX],Msg1[NAME_MAX],Msg2[NAME_MAX],
+			Msg3[NAME_MAX],Msg4[NAME_MAX],Msg5[NAME_MAX];
+
+	FILE *fp;
+	FILE *cor;
+
+	extern int maximum(double *,int);
+	//extern void drawbp(double **,double **,int,int,int);
+
+	void feedward(double **,double **,double *,double *,int,int,int);
+	double errSqu(double *,double *,int);
+
+	output=(double *)calloc(pp,sizeof(double));
+
+	err=0.0;
+	for (i=0;i<mm;i++)
+	{
+		feedward(w_ih,w_ho,patt[i],output,nn,hh,pp);
+
+		err +=errSqu(output,targ[i],pp);
+	 }
+
+	/* err=sqrt(err/(pp*mm));  	 mean-square-root */
+
+	err=err/(pp*mm);  	 /* mean-square */
+	if ((err<=crition)||(sa==1))
+	{
+		/* draw bp */
+	  //	drawbp(w_ih,w_ho,nn,hh,pp);
+
+		if (err<=crition)
+			*fin=1;
+		if ((fp=fopen(fileW,"wt"))==NULL)
+		{
+			fprintf(stderr,"cannot open %s file for writing\n",fileW);
+			exit(1);
+		}
+
+		sprintf(Msg,"weight from input to hidden");
+		fprintf(fp,"%s\n",Msg);
+		for (j=0;j<hh;j++)
+		{
+			for (s=0;s<(nn+1);s++)
+				fprintf(fp,"%f\t",w_ih[j][s]);
+			fprintf(fp,"\n");
+		}
+
+		sprintf(Msg,"weight from hidden to output");
+		fprintf(fp,"%s\n",Msg);
+		for (j=0;j<pp;j++)
+		{
+			for (s=0;s<(hh+1);s++)
+				fprintf(fp,"%f\t",w_ho[j][s]);
+			fprintf(fp,"\n");
+		}
+		fclose(fp);
+
+		if ((cor=fopen(resultF,"wt"))==NULL)
+		{
+			fprintf(stderr,"cannot open %s for writing\n",resultF);
+			exit(1);
+		}
+
+		sprintf(Msg,"Index");
+		sprintf(Msg1,"Class_Get");
+		sprintf(Msg2,"Class_Des");
+		sprintf(Msg3,"Out_1");
+		sprintf(Msg4,"Out_2");
+		sprintf(Msg5,"Out_3");
+		fprintf(cor,"%10s %10s %10s %10s %10s %10s\n",Msg,Msg1,Msg2,Msg3,Msg4,Msg5);
+		mis=0;
+		mis_tr=0;
+		mis_te=0;
+		for (i=0;i<total;i++)
+		{
+			feedward(w_ih,w_ho,patt[i],output,nn,hh,pp);
+			num_p=maximum(output,pp);
+			num_d=maximum(targ[i],pp);
+			if (num_p!=num_d)
+			{
+				if (i<mm)
+					mis_tr++;
+				else
+					mis_te++;
+				mis++;
+			}
+			fprintf(cor,"%10.3d %10.1d %10.1d",i,num_p,num_d);
+			for (j=0;j<pp;j++)
+				fprintf(cor,"%10.6f",output[j]);
+			fprintf(cor,"\n");
+		}
+		fprintf(cor,"Total number of misclassfication: %d\n",mis);
+		fprintf(cor,"   for traing: %d\t for test: %d\n",mis_tr,mis_te);
+		fclose(cor);
+		gotoxy(57,2);
+		printf("Error:%6.6f",err);
+		gotoxy(57,3);
+		printf("traing:%3.3d test:%3.3d",mis_tr,mis_te);
+	}
+
+
+	free(output);
+	return(err);
+}
+
+void
+feedward(wih,who,in,out,n1,h1,p1)
+double **wih;	/* weight from input to hidden */
+double **who;	/* weight from hidden to output */
+double *in;		/* input vector */
+double *out;	/* output vector */
+int	n1;	/* input dim */
+int 	h1;	/* hidden dim */
+int 	p1;	/* output dim */
+{
+	int i,j;
+	double sum;
+	double *out_h;
+	double sigmoid(double);
+
+	out_h=(double *)calloc(h1,sizeof(double));
+
+	/* calculate the outputs of hidden neurons */
+	for (i=0;i<h1;i++)
+	{
+		sum=0.0;
+		for (j=0;j<n1;j++)
+			sum +=((wih[i][j])*(in[j]));
+		sum +=wih[i][n1];
+		out_h[i]=sigmoid(sum);
+	}
+
+	/* calculate the network output */
+	for (i=0;i<p1;i++)
+	{
+		sum =0.0;
+		for (j=0;j<h1;j++)
+			sum +=who[i][j]*out_h[j];
+		sum +=who[i][h1];
+		out[i]=sigmoid(sum);
+	}
+	free(out_h);
+}
+
+double
+errSqu(ou,ta,le)
+double *ou;	/* practical output */
+double *ta;	/* desired output */
+int 	le;	/* output dim */
+{
+	int i;
+	double dif,sum;
+
+	sum=0.0;
+	for (i=0;i<le;i++)
+	{
+		dif=ou[i]-ta[i];
+		sum +=(dif*dif);
+	}
+
+	return(sum);
+}
+
+double
+sigmoid(x)
+double x;
+{
+	x=(tanh(x*Beta)+1.0)/2;
+	return(x);
+}
