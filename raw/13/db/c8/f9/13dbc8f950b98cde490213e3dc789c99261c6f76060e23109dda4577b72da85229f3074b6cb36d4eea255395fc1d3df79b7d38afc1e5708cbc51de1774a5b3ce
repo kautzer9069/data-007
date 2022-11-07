@@ -1,0 +1,120 @@
+/* file : crossover.c
+ * purpose : crossover for the population using two-point
+ *           crossover
+ */
+
+#include <stdio.h>  /* test use */
+
+#include <stdlib.h>
+#include <time.h>
+
+
+void
+crossove(int **popu,int len,int p_size,double rate,int inde,int flag_c)
+/* int	**popu;		 pointer to the  population */
+/* int 	len;			 length of  vector */
+/* int 	p_size;		 population size */
+/* double rate;		 rate for crossover */
+/* int	inde;			 best fitness index */
+{
+	extern void twocross(int *,int *,int);
+	extern void onecross(int *,int *,int);
+	extern void unicross(int *,int *,int);
+
+	int search(int);		/* search the second Kid index */
+	void reorder(int *,int, int);		/* reorder the remain individual indexs */
+
+	int i,j;
+
+
+
+	int *sg;     /* sg[popsize];	 to store the flag of beibg chosen or not */
+	int rno,k1,k2;    /* rno: no. of remaining unchosen individuals */
+							/* k1: first chosen kid; k2 : second */
+
+	double prob;
+
+	randomize();
+
+	sg=(int *)calloc(p_size,sizeof(int));
+
+	/* initialization */
+	/* at the begining, all have not been selected */
+	/* sg[i] store i, and rno=popsize */
+	for (i=0;i<p_size;i++)
+	{
+		sg[i]=i;
+	}
+	rno=p_size;
+
+	/* begin crossover among population */
+	for (i=0;i<(p_size/2+1);i++)
+	{
+		if (rno>=2) 	/* at least two indivuals remain unchosen */
+		{
+
+			j=search(rno);	/* find first kid */
+			k1=sg[j];
+			rno=rno-1;
+			reorder(sg,rno,j);	/* reorder the sign vector */
+			j=search(rno); 		/* find second kid */
+			k2=sg[j];
+			rno=rno-1;
+			reorder(sg,rno,j);	/* reorder the sign vector */
+
+			prob=(1.0*random(1000))/1000;
+			if (prob<=rate) /* probability for crossover */
+			{
+				if((k1 !=inde)&&(k2 !=inde))
+				{
+					switch(flag_c)
+					{
+						case 0:
+							onecross(popu[k1],popu[k2],len);
+							break;
+						case 1:
+							unicross(popu[k1],popu[k2],len);
+							break;
+						default:
+							twocross(popu[k1],popu[k2],len);
+					}
+				}
+
+			}
+		}
+	}
+	free(sg);
+}/* end of crossover.c */
+
+
+int
+search(int si)	/* number of unchosen individuals */
+{
+	int re;
+
+	re=random(si);
+	return(re);
+}
+
+void
+reorder(int *vec,int si,int ind)
+/* int	*vec;		 pointer to the sign vector */
+/* int 	si;		 number of unchosen individuals */
+/* int	ind;		 selected and need to be removed */
+{
+	int i;
+
+	if (ind<si)
+	{
+		for (i=ind;i<si;i++)
+		{
+			*(vec+i)=*(vec+i+1);
+		}
+	}
+}
+
+
+
+
+
+	
