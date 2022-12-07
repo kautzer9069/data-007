@@ -1,0 +1,129 @@
+REM GENRE Soundtrack
+REM DATE 2007
+REM DISCID 290CAD15
+REM COMMENT "ExactAudioCopy v1.0b2"
+PERFORMER "Joe Hisaishi"
+TITLE "The Sun Also Rises"
+FILE "01 - Singanushiga.wav" WAVE
+  TRACK 01 AUDIO
+    TITLE "Singanushiga"
+    PERFORMER "Joe Hisaishi"
+    INDEX 01 00:00:00
+  TRACK 02 AUDIO
+    TITLE "Prologue/When Madness Sets In"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 03:30:01
+FILE "02 - Prologue-When Madness Sets In.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 03 AUDIO
+    TITLE "Just Call Me Aloysha"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 04:20:53
+FILE "03 - Just Call Me Aloysha.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 04 AUDIO
+    TITLE "Madman On A Tree"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 01:07:74
+FILE "04 - Madman On A Tree.wav" WAVE
+    INDEX 01 00:00:00
+FILE "05 - Looking For Mother.wav" WAVE
+  TRACK 05 AUDIO
+    TITLE "Looking For Mother"
+    PERFORMER "Joe Hisaishi"
+    INDEX 01 00:00:00
+FILE "06 - Where Is Mother.wav" WAVE
+  TRACK 06 AUDIO
+    TITLE "Where Is Mother?"
+    PERFORMER "Joe Hisaishi"
+    INDEX 01 00:00:00
+  TRACK 07 AUDIO
+    TITLE "Here She Goes Again"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 00:59:12
+FILE "07 - Here She Goes Again.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 08 AUDIO
+    TITLE "Reminiscence"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 01:53:06
+FILE "08 - Reminiscence.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 09 AUDIO
+    TITLE "Mother's Secret Lair"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 02:05:25
+FILE "09 - Mother's Secret Lair.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 10 AUDIO
+    TITLE "A Miraculous Recovery"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 03:45:22
+FILE "10 - A Miraculous Recovery.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 11 AUDIO
+    TITLE "The Mother Vanishes"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 04:03:06
+FILE "11 - The Mother Vanishes.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 12 AUDIO
+    TITLE "The Parade"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 01:16:49
+FILE "12 - The Parade.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 13 AUDIO
+    TITLE "One From Her Heart"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 02:55:44
+FILE "13 - One From Her Heart.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 14 AUDIO
+    TITLE "Confession of A Secret Admirer"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 03:34:60
+FILE "14 - Confession of A Secret Admirer.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 15 AUDIO
+    TITLE "The Hunting Party"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 01:25:47
+FILE "15 - The Hunting Party.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 16 AUDIO
+    TITLE "Seduction"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 01:05:74
+FILE "16 - Seduction.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 17 AUDIO
+    TITLE "The Hunt/The Lair"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 02:15:25
+FILE "17 - The Hunt-The Lair.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 18 AUDIO
+    TITLE "Night Of The Betrayal"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 01:42:35
+FILE "18 - Night Of The Betrayal.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 19 AUDIO
+    TITLE "Final Reckoning"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 02:16:48
+FILE "19 - Final Reckoning.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 20 AUDIO
+    TITLE "Singanushiga"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 01:32:11
+FILE "20 - Singanushiga.wav" WAVE
+    INDEX 01 00:00:00
+  TRACK 21 AUDIO
+    TITLE "The Sun Also Rises"
+    PERFORMER "Joe Hisaishi"
+    INDEX 00 07:57:40
+FILE "21 - The Sun Also Rises.wav" WAVE
+    INDEX 01 00:00:00
